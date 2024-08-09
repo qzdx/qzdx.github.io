@@ -4,11 +4,11 @@
   <meta charset="utf-8">
   
   
-  <title>Hexo</title>
+  <title>Tag: pwn | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta property="og:type" content="website">
 <meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/tags/pwn/index.html">
 <meta property="og:site_name" content="Hexo">
 <meta property="og:locale" content="en_US">
 <meta property="article:author" content="John Doe">
@@ -69,56 +69,36 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-Glibc-malloc" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2024/08/09/Glibc-malloc/" class="article-date">
-  <time class="dt-published" datetime="2024-08-09T05:22:00.000Z" itemprop="datePublished">2024-08-09</time>
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2024" class="archive-year">2024</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      <a href="/2024/08/09/Glibc-malloc/" class="archive-article-date">
+  <time class="dt-published" datetime="2024-08-09T05:22:00.000Z" itemprop="datePublished">Aug 9</time>
 </a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
+      
   
     <h1 itemprop="name">
-      <a class="p-name article-title" href="/2024/08/09/Glibc-malloc/">Glibc-malloc</a>
+      <a class="archive-article-title" href="/2024/08/09/Glibc-malloc/">Glibc-malloc</a>
     </h1>
   
 
-      </header>
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <h3 id="开销小"><a href="#开销小" class="headerlink" title="开销小"></a>开销小</h3><p>如果每次申请内存都要mmap()，那么内核和用户态频繁的切换会导致很大开销。<br>所以不如初始化时申请大量的空间，然后交给用户态的内存分配器去管理。</p>
-<h3 id="减少碎片"><a href="#减少碎片" class="headerlink" title="减少碎片"></a>减少碎片</h3><p>内存空间是连续的，申请和释放必然导致碎片产生<br>如何合并、复用才能减少这种现象。</p>
-<h3 id="快速"><a href="#快速" class="headerlink" title="快速"></a>快速</h3><p>如果检查过于充分那么分配的速度必然下降.<br>比如运行游戏🎮时，要快速的申请和释放各种对象。</p>
-<h3 id="多线程优化"><a href="#多线程优化" class="headerlink" title="多线程优化"></a>多线程优化</h3><p>如果都用一个堆管理器，比如线程a去free(p)，b去写入p,<br>如果同时进行就会出现错误，选择b去等待a做完再写入则速度又太慢</p>
-<h2 id="每个被分配的单位-chunk"><a href="#每个被分配的单位-chunk" class="headerlink" title="每个被分配的单位 chunk"></a>每个被分配的单位 chunk</h2><p>看libc2.23的源码发现好像chunk是这样</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"> ________________</span><br><span class="line">|    prev_size   | <span class="comment">//每行占8字节，总体与0x10对齐</span></span><br><span class="line">|    size        |</span><br><span class="line">|    fd          |</span><br><span class="line">|    bk          |</span><br><span class="line">|    next_size   |</span><br><span class="line">|    prev_size   |</span><br><span class="line">|________________|</span><br></pre></td></tr></table></figure>
-<h3 id="chunk的特性"><a href="#chunk的特性" class="headerlink" title="chunk的特性"></a>chunk的特性</h3><ul>
-<li>如果相邻地址空间上一个chunk是free状态则prev size是有意义的。<br>如果上一个chunk是使用的则可以存放上一个chunk多出来的数据。</li>
-<li>size的低三位不代表大小，低位表示chunk的状态。<br>fastbin为了提速不改变正在使用的状态。</li>
-<li>chunk在free状态时fd和bk才有意义。</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2024/08/09/Glibc-malloc/" data-id="clzm9sk0g0000op35fkcy4wro" data-title="Glibc-malloc" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/pwn/" rel="tag">pwn</a></li></ul>
-
-    </footer>
+    </header>
   </div>
-  
 </article>
-
-
-
+  
+  
+    </div></section>
   
 
 
