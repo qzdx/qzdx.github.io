@@ -4,22 +4,22 @@
   <meta charset="utf-8">
   
   
-  <title>Glibc-malloc | Hexo</title>
+  <title>Glibc-malloc | Qzdx Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <meta name="description" content="开销小如果每次申请内存都要mmap()，那么内核和用户态频繁的切换会导致很大开销。所以不如初始化时申请大量的空间，然后交给用户态的内存分配器去管理。 减少碎片内存空间是连续的，申请和释放必然导致碎片产生如何合并、复用才能减少这种现象。 快速如果检查过于充分那么分配的速度必然下降.比如运行游戏🎮时，要快速的申请和释放各种对象。 多线程优化如果都用一个堆管理器，比如线程a去free(p)，b去写入p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Glibc-malloc">
 <meta property="og:url" content="http://example.com/2024/08/09/Glibc-malloc/index.html">
-<meta property="og:site_name" content="Hexo">
+<meta property="og:site_name" content="Qzdx Blog">
 <meta property="og:description" content="开销小如果每次申请内存都要mmap()，那么内核和用户态频繁的切换会导致很大开销。所以不如初始化时申请大量的空间，然后交给用户态的内存分配器去管理。 减少碎片内存空间是连续的，申请和释放必然导致碎片产生如何合并、复用才能减少这种现象。 快速如果检查过于充分那么分配的速度必然下降.比如运行游戏🎮时，要快速的申请和释放各种对象。 多线程优化如果都用一个堆管理器，比如线程a去free(p)，b去写入p">
-<meta property="og:locale" content="en_US">
+<meta property="og:locale">
 <meta property="article:published_time" content="2024-08-09T05:22:00.000Z">
 <meta property="article:modified_time" content="2024-08-09T05:43:28.780Z">
-<meta property="article:author" content="John Doe">
+<meta property="article:author" content="pacman">
 <meta property="article:tag" content="pwn">
 <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
+    <link rel="alternate" href="/atom.xml" title="Qzdx Blog" type="application/atom+xml">
   
   
     <link rel="shortcut icon" href="/favicon.png">
@@ -44,8 +44,12 @@
   <div id="header-outer" class="outer">
     <div id="header-title" class="inner">
       <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
+        <a href="/" id="logo">Qzdx Blog</a>
       </h1>
+      
+        <h2 id="subtitle-wrap">
+          <a href="/" id="subtitle">=&gt; pacman</a>
+        </h2>
       
     </div>
     <div id="header-inner" class="inner">
@@ -62,10 +66,10 @@
         
           <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
         
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+        <a class="nav-icon nav-search-btn" title="Suche"><span class="fa fa-search"></span></a>
       </nav>
       <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Suche"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
       </div>
     </div>
   </div>
@@ -109,7 +113,7 @@
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://example.com/2024/08/09/Glibc-malloc/" data-id="clzm9sk0g0000op35fkcy4wro" data-title="Glibc-malloc" class="article-share-link"><span class="fa fa-share">Share</span></a>
+      <a data-url="http://example.com/2024/08/09/Glibc-malloc/" data-id="clzm9sk0g0000op35fkcy4wro" data-title="Glibc-malloc" class="article-share-link"><span class="fa fa-share">Teilen</span></a>
       
       
       
@@ -122,7 +126,7 @@
 <nav id="article-nav">
   
     <a href="/2024/08/11/%E5%A0%86%E5%B9%B3%E8%A1%A1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption">Newer</strong>
+      <strong class="article-nav-caption">Neuer</strong>
       <div class="article-nav-title">
         
           堆平衡
@@ -165,7 +169,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
+    <h3 class="widget-title">Archiv</h3>
     <div class="widget">
       <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2024/08/">August 2024</a></li></ul>
     </div>
@@ -175,7 +179,7 @@
   
     
   <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
+    <h3 class="widget-title">letzter Beitrag</h3>
     <div class="widget">
       <ul>
         
@@ -200,7 +204,7 @@
   <div class="outer">
     <div id="footer-info" class="inner">
       
-      &copy; 2024 John Doe<br>
+      &copy; 2024 pacman<br>
       Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
